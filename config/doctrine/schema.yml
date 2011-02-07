@@ -1,0 +1,55 @@
+ClearCacheTask:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    is_clear_all:
+      type: boolean
+      default: false
+    pattern:
+      type: varchar(255)
+    application_name:
+      type: varchar(255)
+      default: frontend
+    contextual_prefix:
+      type: varchar(255)
+      default: "**"
+      
+Server:
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    ip:
+      type: varchar(50)
+      notnull: true
+    name:
+      type: varchar(255)
+  relations:
+    ClearCacheTasks:
+      foreignAlias: Servers
+      class: ClearCacheTask
+      refClass: ClearCacheTaskServer
+      
+ClearCacheTaskServer:
+  actAs: [Timestampable]
+  columns:
+    clear_cache_task_id:
+      type: integer(4)
+      primary: true
+    server_id:
+      type: integer(4)
+      primary: true
+    is_successful:
+      type: boolean
+      default: false
+  relations:
+    ClearCacheTask:
+      foreignAlias: ClearCacheTaskServers
+      onDelete: cascade
+    Server:
+      foreignAlias: ClearCacheTaskServers
+      onDelete: cascade
