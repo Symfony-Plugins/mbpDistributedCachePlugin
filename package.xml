@@ -27,41 +27,41 @@
             <file role="data" name="LICENSE" />
             <dir name="config">
                 <dir name="doctrine">
-                    <file name="schema.yml" role="cfg" />
+                    <file name="schema.yml" role="data" />
                 </dir>
-                <file name="mbpDistributedCachePluginConfiguration.class.php" role="php" />
+                <file name="mbpDistributedCachePluginConfiguration.class.php" role="data" />
             </dir>
             <dir name="lib">
                 <dir name="filter">
                     <dir name="doctrine">
-                        <file name="PluginClearCacheTaskFormFilter.class.php" role="php" />
-                        <file name="PluginClearCacheTaskServerFormFilter.class.php" role="php" />
-                        <file name="PluginServerFormFilter.class.php" role="php" />
+                        <file name="PluginClearCacheTaskFormFilter.class.php" role="data" />
+                        <file name="PluginClearCacheTaskServerFormFilter.class.php" role="data" />
+                        <file name="PluginServerFormFilter.class.php" role="data" />
                     </dir>
                 </dir>
                 <dir name="form">
                     <dir name="doctrine">
-                        <file name="PluginClearCacheTaskForm.class.php" role="php" />
-                        <file name="PluginClearCacheTaskServerForm.class.php" role="php" />
-                        <file name="PluginServerForm.class.php" role="php" />
+                        <file name="PluginClearCacheTaskForm.class.php" role="data" />
+                        <file name="PluginClearCacheTaskServerForm.class.php" role="data" />
+                        <file name="PluginServerForm.class.php" role="data" />
                     </dir>
                 </dir>
                 <dir name="model">
                     <dir name="doctrine">
-                        <file name="PluginClearCacheTask.class.php" role="php" />
-                        <file name="PluginClearCacheTaskServer.class.php" role="php" />
-                        <file name="PluginServer.class.php" role="php" />
-                        <file name="PluginClearCacheTaskTable.class.php" role="php" />
-                        <file name="PluginClearCacheTaskServerTable.class.php" role="php" />
-                        <file name="PluginServerTable.class.php" role="php" />
+                        <file name="PluginClearCacheTask.class.php" role="data" />
+                        <file name="PluginClearCacheTaskServer.class.php" role="data" />
+                        <file name="PluginServer.class.php" role="data" />
+                        <file name="PluginClearCacheTaskTable.class.php" role="data" />
+                        <file name="PluginClearCacheTaskServerTable.class.php" role="data" />
+                        <file name="PluginServerTable.class.php" role="data" />
                     </dir>
                 </dir>
                 <dir name="task">
-                    <file name="CcTask.class.php" role="php" />
-                    <file name="RegisterServerTask.class.php" role="php" />
+                    <file name="CcTask.class.php" role="data" />
+                    <file name="RegisterServerTask.class.php" role="data" />
                 </dir>
                 <dir name="util">
-                    <file name="CacheClearer.class.php" role="php" />
+                    <file name="CacheClearer.class.php" role="data" />
                 </dir>
             </dir>
             <dir name="test"></dir>
@@ -105,8 +105,8 @@
         </release>
         <release>
             <version>
-                <release>0.1.1</release>
-                <api>0.1.1</api>
+                <release>0.1.2</release>
+                <api>0.1.2</api>
             </version>
             <stability>
                 <release>beta</release>
