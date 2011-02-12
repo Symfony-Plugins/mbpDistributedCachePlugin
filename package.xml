@@ -25,7 +25,6 @@
         <dir name="/">
             <file role="data" name="README" />
             <file role="data" name="LICENSE" />
-            <file role="data" name="CHANGELOG" />
         </dir>
     </contents>
     <dependencies>
