@@ -1,0 +1,82 @@
+# mbpDistributedCachePlugin (for symfony >= 1.3)
+
+The `mbpDistributedCachePlugin` is a symfony plugin that provides you with useful
+tools to clear the cache on a distributed server system (such as a cluster).
+
+## Installation ##
+  * Install the plugin (via a package)
+
+        symfony plugin:install mbpDistributedCachePlugin
+
+  * Install the plugin (via a Subversion checkout)
+
+        svn co http//svn.symfony-project.com/plugins/mbpDistributedCachePlugin/trunk plugins/mbpDistributedCachePlugin
+
+  * Activate the plugin in the `config/ProjectConfiguration.class.php`
+
+        [php]
+        class ProjectConfiguration extends sfProjectConfiguration
+        {
+          public function setup()
+          {
+            $this->enablePlugins(array(
+              ('sfDoctrinePlugin'),
+              ('mbpDistributedCachePlugin'),
+            ));
+          }
+        }
+
+  * Rebuild your model
+
+        symfony doctrine:build-model
+        symfony doctrine:build-sql
+
+  * Update you database tables by starting from scratch (it will delete all
+    the existing tables, then re-create them):
+
+        symfony doctrine:insert-sql
+
+    or do everything with one command
+
+        symfony doctrine-build-all-reload frontend
+
+    or you can just create the new tables by using the generated SQL
+    statements in `data/sql/schema.sql`
+
+  * Register your current server to the database (replace [SERVER_NAME] with your unique server name and run this on every server):
+
+        symfony distributed-cache:register-server [SERVER_NAME]
+
+
+## Clear your cache (across applications) ##
+
+To clear parts (or all) of the cache, run:
+
+        CacheClearer::clear([CACHE_KEY]);
+
+or
+
+        CacheClearer::clearAll();
+
+
+Here are some useful examples:
+
+        CacheClearer::clear('product/show');
+        CacheClearer::clear('product/list?page=*&sf_culture=*');
+        CacheClearer::clear('@sf_cache_partial?module=product&action=_membersSlider&sf_cache_key=*');
+        CacheClearer::clearAll('frontend');
+
+These could be used, e.g. in a processForm() method in the backend to clear parts of the cache on the frontend like this:
+
+        protected function processForm(sfWebRequest $request, sfForm $form)
+        {
+            FrontendCacheClearer::clear('product/list?page=*&sf_culture=*');
+            FrontendCacheClearer::clear('@sf_cache_partial?module=product&action=_membersSlider&sf_cache_key=*');
+        
+            parent::processForm($request, $form);
+        }
+
+
+## Schedule the clearing of the cache ##
+
+On every production server, add the `symfony distributed-cache:cc` task to the crontab and run it, e.g. every minute.
