@@ -10,7 +10,7 @@
  */
 class mbpDistributedCachePluginConfiguration extends sfPluginConfiguration
 {
-  const VERSION = '0.1.0-BETA';
+  const VERSION = '0.1.1-BETA';
 
   /**
    * @see sfPluginConfiguration

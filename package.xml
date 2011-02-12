@@ -12,8 +12,8 @@
     </lead>
     <date>2011-02-12</date>
     <version>
-        <release>0.1.0</release>
-        <api>0.1.0</api>
+        <release>0.1.1</release>
+        <api>0.1.1</api>
     </version>
     <stability>
         <release>beta</release>
@@ -25,6 +25,46 @@
         <dir name="/">
             <file role="data" name="README" />
             <file role="data" name="LICENSE" />
+            <dir name="config">
+                <dir name="doctrine">
+                    <file name="schema.yml" role="cfg" />
+                </dir>
+                <file name="mbpDistributedCachePluginConfiguration.class.php" role="php" />
+            </dir>
+            <dir name="lib">
+                <dir name="filter">
+                    <dir name="doctrine">
+                        <file name="PluginClearCacheTaskFormFilter.class.php" role="php" />
+                        <file name="PluginClearCacheTaskServerFormFilter.class.php" role="php" />
+                        <file name="PluginServerFormFilter.class.php" role="php" />
+                    </dir>
+                </dir>
+                <dir name="form">
+                    <dir name="doctrine">
+                        <file name="PluginClearCacheTaskForm.class.php" role="php" />
+                        <file name="PluginClearCacheTaskServerForm.class.php" role="php" />
+                        <file name="PluginServerForm.class.php" role="php" />
+                    </dir>
+                </dir>
+                <dir name="model">
+                    <dir name="doctrine">
+                        <file name="PluginClearCacheTask.class.php" role="php" />
+                        <file name="PluginClearCacheTaskServer.class.php" role="php" />
+                        <file name="PluginServer.class.php" role="php" />
+                        <file name="PluginClearCacheTaskTable.class.php" role="php" />
+                        <file name="PluginClearCacheTaskServerTable.class.php" role="php" />
+                        <file name="PluginServerTable.class.php" role="php" />
+                    </dir>
+                </dir>
+                <dir name="task">
+                    <file name="CcTask.class.php" role="php" />
+                    <file name="RegisterServerTask.class.php" role="php" />
+                </dir>
+                <dir name="util">
+                    <file name="CacheClearer.class.php" role="php" />
+                </dir>
+            </dir>
+            <dir name="test"></dir>
         </dir>
     </contents>
     <dependencies>
@@ -61,6 +101,21 @@
       * initial import from working project at MadeByPi (http://www.madebypi.co.uk/)
       * refactoring of some of the classes
       * new `distributed-cache:register-server` task
+            </notes>
+        </release>
+        <release>
+            <version>
+                <release>0.1.1</release>
+                <api>0.1.1</api>
+            </version>
+            <stability>
+                <release>beta</release>
+                <api>beta</api>
+            </stability>
+            <date>2011-02-12</date>
+            <license uri="http://www.symfony-project.org/license">MIT license</license>
+            <notes>
+      * Fixed package (contained only README and LICENSE files)
             </notes>
         </release>
     </changelog>
