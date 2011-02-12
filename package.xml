@@ -25,6 +25,7 @@
         <dir name="/">
             <file role="data" name="README" />
             <file role="data" name="LICENSE" />
+            <file role="data" name="CHANGELOG" />
         </dir>
     </contents>
     <dependencies>
@@ -45,5 +46,23 @@
         </required>
     </dependencies>
     <phprelease></phprelease>
-    <changelog></changelog>
+    <changelog>
+        <release>
+            <version>
+                <release>0.1.0</release>
+                <api>0.1.0</api>
+            </version>
+            <stability>
+                <release>beta</release>
+                <api>beta</api>
+            </stability>
+            <date>2011-02-12</date>
+            <license uri="http://www.symfony-project.org/license">MIT license</license>
+            <notes>
+      * initial import from working project at MadeByPi (http://www.madebypi.co.uk/)
+      * refactoring of some of the classes
+      * new `distributed-cache:register-server` task
+            </notes>
+        </release>
+    </changelog>
 </package>

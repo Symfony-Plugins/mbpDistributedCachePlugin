@@ -1,7 +1,0 @@
-version 0.1.0-BETA
-
-  - initial import from working project at [MadeByPi](http://www.madebypi.co.uk/ "Digital agency in Leeds")
-
-  - refactoring of some of the classes
-
-  - new `distributed-cache:register-server` task
