@@ -25,10 +25,10 @@ class RegisterServerTask extends sfBaseTask
         $this->name = 'register-server';
         $this->briefDescription = 'Registers the current server to the database';
         $this->detailedDescription = <<<EOF
-The [distributed-cache:register-cache|INFO] task registers the current server to the database.
+The [distributed-cache:register-server|INFO] task registers the current server to the database.
 Call it with:
 
-  [php symfony distributed-cache:register-cache|INFO pattern]
+  [php symfony distributed-cache:register-server|INFO pattern]
 EOF;
     }
 
