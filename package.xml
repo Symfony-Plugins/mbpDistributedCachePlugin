@@ -16,8 +16,8 @@
         <api>0.1.0</api>
     </version>
     <stability>
-        <release>devel</release>
-        <api>devel</api>
+        <release>beta</release>
+        <api>beta</api>
     </stability>
     <license uri="http://www.symfony-project.org/license">MIT license</license>
     <notes>-</notes>
