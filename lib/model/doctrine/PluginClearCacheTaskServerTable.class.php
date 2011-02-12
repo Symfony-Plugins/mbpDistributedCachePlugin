@@ -7,6 +7,7 @@
  */
 class PluginClearCacheTaskServerTable extends Doctrine_Table
 {
+
     /**
      * Returns an instance of this class.
      *
@@ -16,4 +17,18 @@ class PluginClearCacheTaskServerTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('PluginClearCacheTaskServer');
     }
+
+    static public function getAllPendingByServer(Server $server)
+    {
+        $q = self::getInstance()->createQuery('ccts');
+        $q->leftJoin('ccts.Server s')
+            ->leftJoin('ccts.ClearCacheTask cct')
+            ->where('s.id = ?', $server->getId())
+            ->andWhere('ccts.created_at <= ?', date('Y-m-d H:i:s'))
+            ->andWhere('ccts.is_successful = ?', false)
+        ;
+
+        return $q->execute();
+    }
+
 }

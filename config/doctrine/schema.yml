@@ -25,9 +25,9 @@ Server:
       autoincrement: true
     ip:
       type: varchar(50)
-      notnull: true
     name:
       type: varchar(255)
+      notnull: true
   relations:
     ClearCacheTasks:
       foreignAlias: Servers

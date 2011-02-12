@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The distributed-cache:cc task processes all pending clear-cache tasks for this server
  * 
@@ -10,10 +11,9 @@ class CcTask extends sfBaseTask
     protected function configure()
     {
         $this->addOptions(array(
-            new sfCommandOption('application', null, sfCommandOption::PARAMETER_REQUIRED, 'The application name', 'frontend'),
             new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
             new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
-          //new sfCommandOption('contextual-prefix', null, sfCommandOption::PARAMETER_REQUIRED, "The removal prefix for contextual partials. Defaults to '**' (all actions, all params)", '**'),
+            //new sfCommandOption('contextual-prefix', null, sfCommandOption::PARAMETER_REQUIRED, "The removal prefix for contextual partials. Defaults to '**' (all actions, all params)", '**'),
         ));
 
         $this->namespace = 'distributed-cache';
@@ -41,25 +41,25 @@ EOF;
         }
         else
         {
-            echoln("SERVER_NAME file doesn't exist");
+            echoln("SERVER_NAME file does not exist - run distributed-cache:register-cache first");
             sfContext::createInstance($this->configuration);
-            sfContext::getInstance()->getLogger()->log("SERVER_NAME file doesn't exist");
+            sfContext::getInstance()->getLogger()->log("SERVER_NAME file does not exist - run distributed-cache:register-cache first");
 
             return;
         }
 
         // get Server from database
-        $server = ServerTable::getInstance()->findOneBy('name', $server_name);
-        if (!$server)
-        {
-            // create new server
-            $server = new Server();
-            $server->setName($server_name);
-            $server->save();
-        }
+        $server = ServerTable::getOrCreateOneByName($server_name);
 
         // get all pending tasks
         $clearCacheTaskServers = ClearCacheTaskServerTable::getAllPendingByServer($server);
+
+        if(!count($clearCacheTaskServers))
+        {
+            echoln('Nothing to do');
+
+            return;
+        }
 
         foreach ($clearCacheTaskServers as $clearCacheTaskServer)
         {
@@ -84,8 +84,12 @@ EOF;
     {
         if ($pattern)
         {
-            // @todo switch context to application
             $context = sfContext::createInstance($this->configuration);
+            // switch context to application
+            if ($context->getConfiguration()->getApplication() !== $applicationName)
+            {
+                $context->switchTo($applicationName);
+            }
             $cacheManager = $context->getViewCacheManager();
             // cache exists
             if ($cacheManager)
@@ -112,7 +116,7 @@ EOF;
             }
         }
     }
-    
+
     protected function clearAll($applicationName='frontend')
     {
         $cc = new sfCacheClearTask($this->dispatcher, $this->formatter);
