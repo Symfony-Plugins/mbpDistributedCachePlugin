@@ -7,6 +7,7 @@
  */
 class PluginServerTable extends Doctrine_Table
 {
+
     /**
      * Returns an instance of this class.
      *
@@ -16,4 +17,19 @@ class PluginServerTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('PluginServer');
     }
+
+    public static function getOrCreateOneByName($name)
+    {
+        $server = self::getInstance()->findOneBy('name', $name);
+        if (!$server)
+        {
+            // create new server
+            $server = new Server();
+            $server->setName($name);
+            $server->save();
+        }
+
+        return $server;
+    }
+
 }
