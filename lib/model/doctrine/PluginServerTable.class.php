@@ -18,14 +18,13 @@ class PluginServerTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginServer');
     }
 
-    public static function getOrCreateOneByName($name)
+    public static function getOrCreateOneByName($name, $ip = null)
     {
-        $server = self::getInstance()->findOneBy('name', $name);
-        if (!$server)
+        if (!$server = self::getInstance()->getOneByName($name))
         {
-            // create new server
             $server = new Server();
             $server->setName($name);
+            $server->setIp($ip);
             $server->save();
         }
 
